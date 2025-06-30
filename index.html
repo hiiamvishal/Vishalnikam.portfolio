@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <link href="https://fonts.googleapFis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Poppins:400,700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="css/animate.css">
@@ -22,7 +22,9 @@
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.1.0/tsparticles.bundle.min.js"></script>
 
 <style>
 
@@ -62,41 +64,16 @@
   position: relative;
   font-size: 30px;
   font-weight: bold;
-  color: rgb(255, 255, 255);
+  color: #fff;
   overflow: hidden;
   white-space: nowrap;
-  animation: typing 3s steps(20, end) infinite;
+  border-right: 3px solid #ffbd39;
+  animation: blink-cursor 0.8s steps(1) infinite;
 }
-
-#typing-animation:before {
-  content: "";
-  /* position: absolute; */
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background-color: #ccc;
-  animation: typing-cursor 0.5s ease-in-out infinite;
+@keyframes blink-cursor {
+  0%, 100% { border-color: #ffbd39; }
+  50% { border-color: transparent; }
 }
-
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-@keyframes typing-cursor {
-  from {
-    width: 5px;
-  }
-  to {
-    width: 0;
-  }
-}
-
 
 /* project image zoom effect */
 
@@ -109,8 +86,932 @@
   transform: scale(1.1);
 }
 
+/* Animated Gradient Background for Hero Section */
+.hero {
+  background: linear-gradient(-45deg, #1e3c72, #2a5298, #ffbd39, #ff6e7f);
+  background-size: 400% 400%;
+  animation: gradientBG 12s ease infinite;
+  position: relative;
+}
+@keyframes gradientBG {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
 
+/* Animated CTA Buttons */
+.hero .btn {
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(30,60,114,0.15);
+}
+.hero .btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 6px 24px rgba(255,189,57,0.25);
+}
 
+/* Animated Social Icons */
+.ftco-footer-social .icon-linkedin, .ftco-footer-social .icon-github, .ftco-footer-social .icon-instagram {
+  transition: color 0.3s, transform 0.3s;
+}
+.ftco-footer-social a:hover .icon-linkedin { color: #0077b5; transform: scale(1.2); }
+.ftco-footer-social a:hover .icon-github { color: #333; transform: scale(1.2); }
+.ftco-footer-social a:hover .icon-instagram { color: #e1306c; transform: scale(1.2); }
+
+.profile-3d {
+  box-shadow: 0 8px 32px 0 rgba(30,60,114,0.25), 0 1.5px 8px 0 #ffbd39;
+  border-radius: 20px;
+  transition: box-shadow 0.3s;
+}
+.profile-3d:hover {
+  box-shadow: 0 16px 48px 0 rgba(255,189,57,0.35), 0 3px 16px 0 #1e3c72;
+}
+
+.timeline-vertical {
+  position: relative;
+  margin-left: 20px;
+  padding-left: 30px;
+  border-left: 3px solid var(--accent);
+}
+.timeline-vertical:before {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--accent), var(--accent-light));
+  border-radius: 2px;
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+  opacity: 1;
+  transform: none;
+  display: flex;
+  align-items: flex-start;
+}
+.timeline-icon {
+  position: absolute;
+  left: -44px;
+  top: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: 0 2px 8px var(--accent-light);
+  z-index: 1;
+}
+.timeline-icon.exp { background: var(--accent); }
+.timeline-icon.edu { background: var(--accent-light); color: #fff; }
+.timeline-content {
+  background: rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 18px 24px;
+  box-shadow: 0 2px 12px var(--accent-light);
+  margin-left: 20px;
+  min-width: 220px;
+  flex: 1;
+}
+.timeline-date {
+  font-size: 14px;
+  color: var(--accent);
+  font-weight: 600;
+}
+.timeline-content h3 {
+  font-size: 1.15rem;
+  margin: 6px 0 2px 0;
+  color: #fff;
+}
+.timeline-content ul {
+  margin: 10px 0 0 18px;
+  padding: 0;
+  font-size: 15px;
+}
+@media (max-width: 767px) {
+  .timeline-vertical { margin-left: 0; padding-left: 10px; }
+  .timeline-content { margin-left: 0; padding: 14px 10px; }
+  .timeline-icon { left: -28px; width: 28px; height: 28px; font-size: 16px; }
+}
+
+body {
+  background: #181c24;
+  font-family: 'Montserrat', 'Poppins', Arial, sans-serif;
+  color: #e0e0e0;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+}
+.glass-card {
+  background: rgba(24,28,36,0.7);
+  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.25);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  border: 1.5px solid rgba(255,255,255,0.12);
+  padding: 2.5rem 2rem;
+  margin-bottom: 2rem;
+}
+.neon {
+  color: #ff0057;
+  text-shadow: 0 0 8px #ff0057, 0 0 16px #ff4e50;
+}
+.btn-neon {
+  background: #181c24;
+  color: #ff0057;
+  border: 2px solid #ff0057;
+  border-radius: 30px;
+  box-shadow: 0 0 8px #ff0057;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.btn-neon:hover {
+  background: #ff0057;
+  color: #181c24;
+  box-shadow: 0 0 24px #ff0057;
+}
+/* Floating Social Sidebar */
+.social-sidebar {
+  position: fixed;
+  top: 50%;
+  left: 32px;
+  transform: translateY(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.social-sidebar a {
+  color: #ff0057;
+  font-size: 2rem;
+  transition: color 0.2s, transform 0.2s;
+  text-shadow: 0 0 8px #ff0057;
+}
+.social-sidebar a:hover {
+  color: #fff;
+  transform: scale(1.2);
+}
+/* Hero Section */
+#hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  overflow: hidden;
+}
+#vanta-bg {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 0;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.hero-img-3d {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  margin: 0 auto 2rem auto;
+  box-shadow: 0 0 48px 8px var(--accent), 0 8px 32px 0 rgba(0,0,0,0.25);
+  background: rgba(24,28,36,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: floaty 3.5s ease-in-out infinite;
+  border: 4px solid rgba(37,99,235,0.25);
+  transition: box-shadow 0.3s;
+  transform: translate(40px, -20px);
+}
+.hero-img-3d:hover {
+  box-shadow: 0 0 64px 16px var(--accent-light), 0 8px 32px 0 rgba(0,0,0,0.25);
+}
+.hero-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+.hero-highlight {
+  background: linear-gradient(90deg, var(--accent-light) 0%, var(--accent) 60%, var(--accent-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 16px var(--accent-light), 0 2px 8px var(--accent-dark);
+  display: inline-block;
+  animation: namePopIn 1.2s cubic-bezier(.77,0,.18,1);
+}
+@keyframes namePopIn {
+  0% { opacity: 0; transform: scale(0.85) translateY(20px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+.hero-desc {
+  font-size: 1.2rem;
+  color: #b0b0b0;
+  margin-bottom: 2rem;
+}
+@media (max-width: 767px) {
+  .hero-title { font-size: 2rem; }
+  .hero-img-3d { width: 120px; height: 120px; }
+  .social-sidebar { left: 8px; }
+}
+
+.skill-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: rgba(37,99,235,0.08) !important;
+  box-shadow: 0 0 16px 2px var(--accent) !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+.skill-circle svg {
+  position: absolute;
+  top: 0; left: 0;
+}
+.skill-circle .skill-label {
+  font-size: 0.95rem;
+  color: #fff;
+  margin-top: 0.2rem;
+  font-weight: 600;
+  z-index: 2;
+}
+.skill-circle .skill-percent {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent) !important;
+  z-index: 2;
+}
+.fun-fact {
+  background: rgba(37,99,235,0.13) !important;
+  border-radius: 18px;
+  padding: 1.2rem 2.2rem;
+  box-shadow: 0 2px 12px rgba(37,99,235,0.08) !important;
+  text-align: center;
+  min-width: 110px;
+}
+.fact-number {
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--accent) !important;
+  margin-bottom: 0.2rem;
+}
+.fact-label {
+  font-size: 1rem;
+  color: #fff !important;
+  opacity: 0.85;
+}
+.projects-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.2rem;
+  justify-content: center;
+}
+.project-card {
+  background: rgba(30,60,114,0.13);
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(255,0,87,0.10);
+  padding: 2rem 1.5rem 1.2rem 1.5rem;
+  min-width: 220px;
+  max-width: 260px;
+  flex: 1 1 220px;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(.77,0,.18,1), box-shadow 0.25s;
+  will-change: transform;
+  perspective: 600px;
+  border: 1.5px solid rgba(255,0,87,0.18);
+  position: relative;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: cardIn 0.8s cubic-bezier(.77,0,.18,1) forwards;
+}
+@keyframes cardIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+.project-card:hover {
+  transform: scale(1.06) rotateY(8deg) translateY(-8px);
+  box-shadow: 0 8px 32px 0 #ff0057, 0 2px 16px rgba(30,60,114,0.18);
+  z-index: 2;
+}
+.project-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.7rem;
+}
+.project-tags {
+  font-size: 0.98rem;
+  color: #ff0057;
+  opacity: 0.85;
+}
+/* Modal Styles */
+.project-modal {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(24,28,36,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+.modal-content {
+  background: rgba(30,60,114,0.18);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px 0 #ff0057, 0 2px 16px rgba(30,60,114,0.18);
+  padding: 2.5rem 2rem 2rem 2rem;
+  min-width: 320px;
+  max-width: 420px;
+  color: #fff;
+  position: relative;
+  border: 1.5px solid rgba(255,0,87,0.18);
+  text-align: center;
+}
+.close-modal {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 2rem;
+  color: #ff0057;
+  cursor: pointer;
+  font-weight: 700;
+  transition: color 0.2s;
+}
+.close-modal:hover {
+  color: #fff;
+}
+.modal-tech {
+  margin-top: 1rem;
+  color: #ff0057;
+  font-size: 1rem;
+  font-weight: 600;
+}
+@media (max-width: 900px) {
+  .projects-grid { gap: 1.2rem; }
+  .project-card { min-width: 160px; max-width: 200px; padding: 1.2rem 0.7rem; }
+}
+
+.accent {
+  color: #3a8dde;
+}
+.btn-accent {
+  background: #181c24;
+  color: #3a8dde;
+  border: 2px solid #3a8dde;
+  border-radius: 30px;
+  box-shadow: 0 0 8px #3a8dde;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  font-size: 1.1rem;
+  padding: 0.8rem 2.2rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-accent:hover {
+  background: #3a8dde;
+  color: #181c24;
+  box-shadow: 0 0 24px #3a8dde;
+}
+.social-sidebar a {
+  color: #3a8dde;
+  text-shadow: 0 0 8px #3a8dde;
+}
+.social-sidebar a:hover {
+  color: #ff4e8e;
+}
+.hero-img-3d {
+  box-shadow: 0 0 48px 8px #3a8dde, 0 8px 32px 0 rgba(0,0,0,0.25);
+  border: 4px solid rgba(58,141,222,0.25);
+}
+.hero-img-3d:hover {
+  box-shadow: 0 0 64px 16px #ff4e8e, 0 8px 32px 0 rgba(0,0,0,0.25);
+}
+.hero-highlight {
+  color: #3a8dde;
+  text-shadow: 0 0 8px #3a8dde;
+}
+.skill-circle {
+  background: rgba(37,99,235,0.08) !important;
+  box-shadow: 0 0 16px 2px var(--accent) !important;
+}
+.skill-circle .skill-percent {
+  color: var(--accent) !important;
+}
+.fun-fact {
+  background: rgba(37,99,235,0.13) !important;
+  box-shadow: 0 2px 12px rgba(37,99,235,0.08) !important;
+}
+.fact-number {
+  color: var(--accent) !important;
+}
+.timeline-vertical {
+  border-left: 3px solid #3a8dde;
+}
+.timeline-vertical:before {
+  background: linear-gradient(to bottom, #3a8dde, #ff4e8e);
+}
+.timeline-icon.exp { background: #3a8dde; }
+.timeline-icon.edu { background: #ff4e8e; }
+.timeline-date {
+  color: #3a8dde;
+}
+.project-card {
+  background: rgba(58,141,222,0.13);
+  box-shadow: 0 2px 16px rgba(58,141,222,0.10);
+  border: 1.5px solid rgba(58,141,222,0.18);
+}
+.project-card:hover {
+  box-shadow: 0 8px 32px 0 #3a8dde, 0 2px 16px rgba(58,141,222,0.18);
+}
+.project-tags {
+  color: #3a8dde;
+}
+.project-modal {
+  background: rgba(24,28,36,0.92);
+}
+.modal-content {
+  background: rgba(58,141,222,0.18);
+  box-shadow: 0 8px 32px 0 #3a8dde, 0 2px 16px rgba(58,141,222,0.18);
+  border: 1.5px solid rgba(58,141,222,0.18);
+}
+.close-modal {
+  color: #ff4e8e;
+}
+.close-modal:hover {
+  color: #3a8dde;
+}
+.modal-tech {
+  color: #ff4e8e;
+}
+.contact-input {
+  background: rgba(255,255,255,0.08);
+  border: 1.5px solid rgba(58,141,222,0.18);
+  border-radius: 12px;
+  padding: 0.9rem 1.1rem;
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(58,141,222,0.08);
+}
+.contact-input:focus {
+  border: 1.5px solid var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+:root {
+  --accent: #2563eb;
+  --accent-dark: #1e40af;
+  --accent-light: #60a5fa;
+}
+body {
+  background: #181c24;
+  color: #e0e0e0;
+}
+.accent {
+  color: var(--accent);
+}
+.btn-accent {
+  background: #181c24;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: 30px;
+  box-shadow: 0 0 8px var(--accent-light);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  font-size: 1.1rem;
+  padding: 0.8rem 2.2rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-accent:hover {
+  background: var(--accent);
+  color: #181c24;
+  box-shadow: 0 0 24px var(--accent);
+}
+.social-sidebar a {
+  color: var(--accent);
+  text-shadow: 0 0 8px var(--accent-light);
+}
+.social-sidebar a:hover {
+  color: var(--accent-light);
+}
+.hero-img-3d {
+  box-shadow: 0 0 48px 8px var(--accent), 0 8px 32px 0 rgba(0,0,0,0.25);
+  border: 4px solid rgba(37,99,235,0.25);
+}
+.hero-img-3d:hover {
+  box-shadow: 0 0 64px 16px var(--accent-light), 0 8px 32px 0 rgba(0,0,0,0.25);
+}
+.hero-highlight {
+  color: var(--accent);
+  text-shadow: 0 0 8px var(--accent-light);
+}
+.skill-circle {
+  background: rgba(37,99,235,0.08) !important;
+  box-shadow: 0 0 16px 2px var(--accent) !important;
+}
+.skill-circle .skill-percent {
+  color: var(--accent) !important;
+}
+.fun-fact {
+  background: rgba(37,99,235,0.13) !important;
+  box-shadow: 0 2px 12px rgba(37,99,235,0.08) !important;
+}
+.fact-number {
+  color: var(--accent) !important;
+}
+.projects-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.2rem;
+  justify-content: center;
+}
+.project-card {
+  background: rgba(37,99,235,0.13);
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(37,99,235,0.10);
+  padding: 2rem 1.5rem 1.2rem 1.5rem;
+  min-width: 220px;
+  max-width: 260px;
+  flex: 1 1 220px;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(.77,0,.18,1), box-shadow 0.25s;
+  will-change: transform;
+  perspective: 600px;
+  border: 1.5px solid rgba(37,99,235,0.18);
+  position: relative;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: cardIn 0.8s cubic-bezier(.77,0,.18,1) forwards;
+}
+@keyframes cardIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+.project-card:hover {
+  transform: scale(1.06) rotateY(8deg) translateY(-8px);
+  box-shadow: 0 8px 32px 0 var(--accent), 0 2px 16px rgba(37,99,235,0.18);
+  z-index: 2;
+}
+.project-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.7rem;
+}
+.project-tags {
+  font-size: 0.98rem;
+  color: var(--accent);
+  opacity: 0.85;
+}
+.project-modal {
+  background: rgba(24,28,36,0.92);
+}
+.modal-content {
+  background: rgba(37,99,235,0.18);
+  box-shadow: 0 8px 32px 0 var(--accent), 0 2px 16px rgba(37,99,235,0.18);
+  border: 1.5px solid rgba(37,99,235,0.18);
+}
+.close-modal {
+  color: var(--accent-light);
+}
+.close-modal:hover {
+  color: var(--accent);
+}
+.modal-tech {
+  color: var(--accent-dark);
+}
+.contact-input {
+  background: rgba(255,255,255,0.08);
+  border: 1.5px solid rgba(37,99,235,0.18);
+  border-radius: 12px;
+  padding: 0.9rem 1.1rem;
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+}
+.contact-input:focus {
+  border: 1.5px solid var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.glass-navbar {
+  position: fixed;
+  top: 0; left: 0; width: 100vw;
+  z-index: 10000;
+  background: rgba(24,28,36,0.65);
+  box-shadow: 0 4px 24px 0 rgba(37,99,235,0.10);
+  backdrop-filter: blur(16px);
+  border-bottom: 1.5px solid rgba(37,99,235,0.10);
+}
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 2.2rem;
+}
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2.2rem;
+  margin: 0;
+  padding: 0;
+}
+.nav-link {
+  color: #e0e0e0;
+  font-size: 1.08rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.3rem 0.7rem;
+  border-radius: 18px;
+  transition: background 0.18s, color 0.18s;
+}
+.nav-link.active, .nav-link:hover {
+  background: rgba(37,99,235,0.13);
+  color: var(--accent);
+}
+@media (max-width: 900px) {
+  .nav-container { padding: 0.7rem 1rem; }
+  .nav-links { gap: 1.1rem; }
+}
+.glass-hero {
+  background: rgba(24,28,36,0.55);
+  box-shadow: 0 8px 32px 0 rgba(37,99,235,0.10);
+  backdrop-filter: blur(12px);
+  border-radius: 32px;
+  border: 1.5px solid rgba(37,99,235,0.10);
+  padding: 2.5rem 2rem 2.5rem 2rem;
+  margin-top: 5.5rem;
+}
+.profile-glow {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%,-50%);
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-light) 0%, var(--accent) 60%, transparent 100%);
+  filter: blur(24px);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.7;
+  animation: glowPulse 3.5s ease-in-out infinite;
+}
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.7; filter: blur(24px); }
+  50% { opacity: 1; filter: blur(36px); }
+}
+.hero-img-3d {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  margin: 0 auto 2rem auto;
+  box-shadow: 0 0 48px 8px var(--accent), 0 8px 32px 0 rgba(0,0,0,0.25);
+  background: rgba(24,28,36,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: floaty 5s ease-in-out infinite;
+  border: 4px solid rgba(37,99,235,0.25);
+  transition: box-shadow 0.3s;
+  transform: translate(40px, -10px);
+}
+.hero-img-3d:hover {
+  box-shadow: 0 0 64px 16px var(--accent-light), 0 8px 32px 0 rgba(0,0,0,0.25);
+}
+.animated-text {
+  animation: fadeInUp 1.2s cubic-bezier(.77,0,.18,1);
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+html {
+  scroll-behavior: smooth;
+}
+.section-animate {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(.77,0,.18,1), transform 0.8s cubic-bezier(.77,0,.18,1);
+}
+.section-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.typing-stream {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-right: 2.5px solid var(--accent);
+  white-space: nowrap;
+  overflow: hidden;
+  min-height: 1.5em;
+  display: inline-block;
+  animation: blink-cursor 0.8s steps(1) infinite;
+}
+@keyframes blink-cursor {
+  0%, 100% { border-color: var(--accent); }
+  50% { border-color: transparent; }
+}
+.skills-bar-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.skill-bar-item {
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+.skill-bar-item span {
+  min-width: 90px;
+  display: inline-block;
+}
+.skill-bar {
+  flex: 1;
+  background: rgba(37,99,235,0.10);
+  border-radius: 8px;
+  height: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.skill-bar-fill {
+  background: linear-gradient(90deg, var(--accent-light) 0%, var(--accent) 80%);
+  height: 100%;
+  width: 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px var(--accent-light);
+  transition: width 1.2s cubic-bezier(.77,0,.18,1);
+  position: relative;
+}
+.skill-bar-fill::after {
+  content: attr(data-percent) '%';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+/* Social icon hover brand colors */
+.social-sidebar a:hover .icon-linkedin,
+#contact-section a:hover .icon-linkedin { color: #0077b5 !important; }
+.social-sidebar a:hover .icon-github,
+#contact-section a:hover .icon-github { color: #333 !important; }
+.social-sidebar a:hover .icon-instagram,
+#contact-section a:hover .icon-instagram { color: #e1306c !important; }
+.hero-gradient-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg, rgba(37,99,235,0.10) 0%, rgba(96,165,250,0.10) 50%, rgba(30,64,175,0.10) 100%);
+  animation: heroGradientMove 8s ease-in-out infinite alternate;
+  mix-blend-mode: lighten;
+}
+@keyframes heroGradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+.profile-pulse {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%,-50%);
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-light) 0%, var(--accent) 60%, transparent 100%);
+  filter: blur(32px);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  animation: pulseRing 2.8s infinite cubic-bezier(.77,0,.18,1);
+}
+@keyframes pulseRing {
+  0%, 100% { opacity: 0.5; transform: translate(-50%,-50%) scale(1); }
+  50% { opacity: 0.9; transform: translate(-50%,-50%) scale(1.08); }
+}
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: var(--accent-light);
+  margin-bottom: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  animation: fadeInUp 1.4s cubic-bezier(.77,0,.18,1);
+}
+.hero-cta {
+  animation: fadeInUp 1.6s cubic-bezier(.77,0,.18,1);
+  box-shadow: 0 0 16px var(--accent-light);
+}
+.hero-cta:hover {
+  animation: pulseBtn 0.7s;
+  box-shadow: 0 0 32px var(--accent-light);
+}
+@keyframes pulseBtn {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.07); }
+  100% { transform: scale(1); }
+}
+.glass-social {
+  background: rgba(24,28,36,0.55);
+  box-shadow: 0 4px 24px 0 rgba(37,99,235,0.10);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  border: 1.5px solid rgba(37,99,235,0.10);
+  padding: 1.1rem 0.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+}
+@media (max-width: 767px) {
+  .profile-pulse { width: 120px; height: 120px; }
+  .glass-social { padding: 0.5rem 0.3rem; gap: 10px; }
+}
+.profile-spiral {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+.spiral-main {
+  width: 210px; height: 210px;
+  background: conic-gradient(from var(--spiral-angle,0deg), var(--accent-light) 0 20%, transparent 20% 30%, var(--accent) 30% 50%, transparent 50% 60%, var(--accent-dark) 60% 80%, transparent 80% 100%);
+  filter: blur(36px) brightness(1.2);
+  opacity: 0.7;
+  animation: spiralRotateMain 7s linear infinite, spiralAngle 8s linear infinite alternate;
+}
+.spiral-secondary {
+  width: 170px; height: 170px;
+  background: conic-gradient(from var(--spiral-angle2,0deg), transparent 0 10%, var(--accent-light) 10% 30%, transparent 30% 50%, var(--accent) 50% 70%, transparent 70% 90%, var(--accent-dark) 90% 100%);
+  filter: blur(18px) brightness(1.1);
+  opacity: 0.5;
+  animation: spiralRotateSecondary 9s linear infinite reverse, spiralAngle2 10s linear infinite alternate;
+}
+@keyframes spiralRotateMain {
+  0% { transform: translate(-50%,-50%) rotate(0deg); }
+  100% { transform: translate(-50%,-50%) rotate(360deg); }
+}
+@keyframes spiralRotateSecondary {
+  0% { transform: translate(-50%,-50%) rotate(0deg); }
+  100% { transform: translate(-50%,-50%) rotate(-360deg); }
+}
+@keyframes spiralAngle {
+  0% { --spiral-angle: 0deg; }
+  100% { --spiral-angle: 90deg; }
+}
+@keyframes spiralAngle2 {
+  0% { --spiral-angle2: 0deg; }
+  100% { --spiral-angle2: -90deg; }
+}
+@media (max-width: 767px) {
+  .spiral-main { width: 120px; height: 120px; }
+  .spiral-secondary { width: 90px; height: 90px; }
+}
+.hero-cta, .btn-accent {
+  animation: none !important;
+  box-shadow: 0 0 16px var(--accent-light);
+}
+.hero-cta:hover, .btn-accent:hover {
+  animation: none !important;
+  box-shadow: 0 0 24px var(--accent-light);
+}
 </style>
 
 
@@ -118,383 +1019,183 @@
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	  
 	  
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
-	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Vishal Nikam</a>
-	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
-
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav nav ml-auto">
-	          <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
-	          <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
-	          <li class="nav-item"><a href="#resume-section" class="nav-link"><span>Resume</span></a></li>
-	          <li class="nav-item"><a href="#project-section" class="nav-link"><span>Projects</span></a></li>
-	          <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
+    <nav class="glass-navbar">
+      <div class="nav-container">
+        <a href="#hero-section" class="nav-logo accent">Vishal Nikam</a>
+        <ul class="nav-links">
+          <li><a href="#hero-section" class="nav-link active">Home</a></li>
+          <li><a href="#about-section" class="nav-link">About</a></li>
+          <li><a href="#experience-education-section" class="nav-link">Experience</a></li>
+          <!-- <li><a href="#education-section" class="nav-link">Education</a></li> -->
+          <li><a href="#projects-section" class="nav-link">Projects</a></li>
+          <li><a href="#contact-section" class="nav-link">Contact</a></li>
 	        </ul>
-	      </div>
 	    </div>
 	  </nav>
-	  <section id="home-section" class="hero">
-
-			<div class="home-slider  owl-carousel">
-				<div class="slider-item ">
-				   <div class="overlay"></div>
-				  <div class="container">
-				   <div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
-					   <div class="one-third js-fullheight order-md-last img" style="background-image:url(images/Vishal.png);">
-						<div class="overlay"></div>
+    <section id="hero-section">
+      <div class="hero-gradient-overlay"></div>
+      <div class="hero-content glass-hero">
+        <div class="hero-img-3d">
+          <div class="profile-spiral spiral-main"></div>
+          <div class="profile-spiral spiral-secondary"></div>
+          <img src="images/Vishal Circle.png" alt="Vishal Nikam" style="width: 90%; border-radius: 50%; background: none; position:relative; z-index:2; transform: translate(0px, -15px); " />
 					   </div>
-					   <div class="one-forth d-flex  align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-						   <div class="text">
-							   <span class="subheading">Hello!</span>
-							 <h1 class="mb-4 mt-3">I'm <span>Vishal Nikam</span></h1>
-	  
-							 <!-- Element to contain animated typing -->
-							 <span id="typing-animation"></span>
-	 
-							 <script>
-	 
-							 // Initialize the typing animation
-							 const typingAnimationElement = document.getElementById('typing-animation');
-	 
-							 // Create an array of typing text
-							 const typingTexts = [
-							 'Engineer  ',
-							 'DevOps Engineer'
-							 
-							 ];
-	 
-							 // Create a function to display the typing animation for a given text
-							 function playTypingAnimation(text) {
-							 // Loop through each character and add it to the element
-							 for (let i = 0; i < text.length; i++) {
-								 setTimeout(() => {
-								 typingAnimationElement.textContent += text[i];
-								 }, i * 200); // Increase the delay to slow down the typing animation
-							 }
-	 
-							 // Once the animation is complete, reset the text and start over
-							 setTimeout(() => {
-								 typingAnimationElement.textContent = '';
-								 playTypingAnimation(typingTexts[(typingTexts.indexOf(text) + 1) % typingTexts.length]);
-							 }, text.length * 200);
-							 }
-	 
-							 // Start the typing animation loop
-							 playTypingAnimation(typingTexts[0]);
-	 
-							 </script>
-	 
-							 <br>
-							 <br>
-							 <p><a href="https://www.linkedin.com/in/vishal-nikam-/" class="btn btn-primary py-3 px-4">LinkedIn</a> 
-								 <a href="images/Vishal_Nikam.pdf" class="btn btn-white btn-outline-white py-3 px-4">Resume</a></p>
+        <div class="hero-title animated-text">Hi, I'm <span class="hero-highlight">Vishal Nikam</span></div>
+        <div class="hero-subtitle">Building Reliable Cloud Solutions</div>
+        <div class="hero-desc">
+          <span id="typing-stream" class="typing-stream accent"></span>
 						 </div>
+        <a href="images/Vishal_Nikam.pdf" class="btn-accent" target="_blank">Download Resume</a>
 					   </div>
-					 </div>
-				 </div>
-			   </div>
-			 </div>
-		  
     </section>
 
 	<!-- About Section -->
-    <section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
-    	<div class="container">
-			<div class="row">
-				<div class="row d-flex align-items-stretch">
-				<!-- <div class="row d-flex"> -->
-					<div class="col-md-6 col-lg-5 d-flex">
-						<div class="img-about img d-flex align-items-stretch">
-							<div class="overlay">
-								<div class="row">
-									<div class="col-sm-6 col-md-5">
-									  <div class="about-img">
-										<img src="images/Vishal Circle.png" class="img-fluid rounded b-shadow-a" alt="">
+    <section id="about-section" class="section-animate">
+      <div class="glass-card" style="max-width: 900px; margin: 3rem auto 2rem auto;">
+        <h2 class="accent" style="font-size:2.2rem; font-weight:700; margin-bottom:1.2rem;">About Me</h2>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:2.5rem;">
+          <div style="flex:1 1 220px;min-width:220px;">
+            <p style="font-size:1.15rem;line-height:1.7;">With 3+ years of experience in DevOps, I specialize in cloud automation, infrastructure as code, and building reliable, scalable systems. I'm passionate about solving real-world problems, optimizing cloud costs, and ensuring 100% uptime for critical applications. I thrive on learning, sharing, and collaborating to deliver impactful solutions.</p>
+            <ul style="list-style:none;padding:0;margin:1.2rem 0 0 0;font-size:1rem;">
+              <li><b>Location:</b> Navi Mumbai, India</li>
+              <li><b>Email:</b> <a href="mailto:nikamvishalbhaskar@gmail.com" class="accent">nikamvishalbhaskar@gmail.com</a></li>
+              <li><b>Languages:</b> English, Hindi, Marathi</li>
+            </ul>
+									  </div>
+          <div style="flex:1 1 260px;min-width:220px;display:flex;flex-direction:column;align-items:center;">
+            <h3 class="accent" style="font-size:1.1rem;margin-bottom:1rem;">Skills</h3>
+            <div class="skills-bar-list">
+              <div class="skill-bar-item"><span>AWS/GCP</span><div class="skill-bar"><div class="skill-bar-fill" data-percent="95"></div></div></div>
+              <div class="skill-bar-item"><span>Ansible</span><div class="skill-bar"><div class="skill-bar-fill" data-percent="92"></div></div></div>
+              <div class="skill-bar-item"><span>Terraform</span><div class="skill-bar"><div class="skill-bar-fill" data-percent="90"></div></div></div>
+              <div class="skill-bar-item"><span>CI/CD</span><div class="skill-bar"><div class="skill-bar-fill" data-percent="88"></div></div></div>
+              <div class="skill-bar-item"><span>Python</span><div class="skill-bar"><div class="skill-bar-fill" data-percent="85"></div></div></div>
+									</div>
 									  </div>
 									</div>
-									<!-- Details next to profile image -->
-									<div class="col-sm-6 col-md-7">
-									  <div class="about-info">
-										<p><span class="title-s"><b>Name: </b> </span> <span>Vishal Nikam</span></p>
-										<p><span class="title-s"><b>College: </b></span> <span>Maharashtra Institute of Technology, Aurangabad.</span></p>
-										<p><span class="title-s"><b>Eduaction: </b></span> <span>Bachelor of Engineering </span></p>
-										<p><span class="title-s"><b>Address:</b> </span> <span>Vashi Navi Mumbai,Maharashtra, India</span></p>
-									  </div>
-									</div>
+        <!-- Fun Facts / Achievements -->
+        <div style="margin-top:2.5rem;display:flex;gap:2.5rem;justify-content:center;flex-wrap:wrap;">
+          <div class="fun-fact">
+            <div class="fact-number" data-count="30">0</div>
+            <div class="fact-label">Projects</div>
 								  </div>
-
-								<div class="skill-mf">
-									<p class="title-s">Skills</p>
-									<span>AWS/GCP</span> <span class="pull-right">95%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0"
-											aria-valuemax="100"></div>
+          <div class="fun-fact">
+            <div class="fact-number" data-count="3">0</div>
+            <div class="fact-label">Years Experience</div>
 									</div>
-									
-									<span>Ansible</span> <span class="pull-right">95%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0"
-											aria-valuemax="100"></div>
+          <div class="fun-fact">
+            <div class="fact-number" data-count="10">0</div>
+            <div class="fact-label">Certifications</div>
 									</div>
-									
-									<span>Terraform</span> <span class="pull-right">90%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0"
-											aria-valuemax="100"></div>
+          <div class="fun-fact">
+            <div class="fact-number" data-count="100">0</div>
+            <div class="fact-label">% Uptime</div>
 									</div>
-									
-									<span>CI/CD </span> <span class="pull-right">90%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90I" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									
-									<span> SIEM</span> <span class="pull-right">90%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-
-									
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-md-6 col-lg-7 pl-lg-5 pb-5">
-						<div class="row justify-content-start pb-3">
-							<div class="col-md-12 heading-section ftco-animate">
-								
-								<h1 class="big">About</h1>
-								<h2 class="mb-4">About Me</h2>
-								
-								<p>With 3 years of experience in DevOps engineering. I am proficient in system in automating tasks using Ansible, and monitoring infrastructure with Zabbix/Grafana. I have enhanced AWS cost-efficiency and released non utilised resources. I have managed SSL certificates for websites effectively also enhanced infrastructure security. I have experience in DR Strategies, designing architectures, and executing deployments of Android and Java applications. I have successfully automated deployments, mitigation processes, and ensured 100% uptime for applications through effective monitoring.</p>
-								<ul class="about-info mt-4 px-md-0 px-2">
-									<li class="d-flex"><span>Profile:</span> <span>DevOps Engineer</span></li>
-									<li class="d-flex"><span>Domain:</span> <span>DevOps Engineer</span></li>
-									<li class="d-flex"><span>Education:</span> <span>Bachelor of Engineering</span></li>
-									<li class="d-flex"><span>Language:</span> <span>English, Hindi , Marathi</span></li>
-									<li class="d-flex"><span>Ansible:</span> <span>Keyless/Password less SSH </span></li>
-									<li class="d-flex"><span>Other Skills:</span> <span>AWS , Ansible , Monitoring, Python , Git , Jira</span></li>
-									<li class="d-flex"><span>Interest:</span> <span>Coding , Solve real-word Problems , Traveling</span></li>
-									
-								</ul>
-							</div>
-						</div>
-
-						<div class="counter-wrap ftco-animate d-flex mt-md-3">
-							<div class="text">
-								<p class="mb-4">
-									<span class="number" data-number="30">0</span> <span>+</span>
-									<span>&nbsp; Projects completed</span>
-								</p>
-								<p><a href="https://www.linkedin.com/in/vishal-nikam-/" class="btn btn-primary py-3 px-3">LinkedIn</a></p>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
     </section>
 
-	<!-- Resume Section -->
-    <section class="ftco-section ftco-no-pb" id="resume-section">
-    	<div class="container">
-    		<div class="row justify-content-center pb-5">
-          <div class="col-md-10 heading-section text-center ftco-animate">
-          	<h1 class="big big-2">Resume</h1>
-            <h2 class="mb-4">Resume</h2>
-            <p>A results-driven professional with 3 years of experience in DevOps engineering, specializing in the implementation and optimization
-				of DevOps practices and Site Reliability Engineering (SRE) solutions in the IT industry. I have a proven track record in enhancing
-				system reliability, automating workflows, and refining deployment pipelines to ensure scalable, efficient, and secure infrastructure.</p>
-				<a href="images/Vishal_Nikam.pdf" class="btn btn-primary py-3 px-4">Resume</a>
-				
-          </div>
-        </div>
-		<br>
-		<br>
-		<br>
-		<div class="row">
-			<h1 class="big-4">Experience</h1>
-		
-			<div class="underline"></div>
-		</div>
-		<br>
-
-		<!-- Experiance section -->
-		<div class="row">
-				<div class="col-md-6">
-					<div class="resume-wrap ftco-animate">
-						<span class="date">06/2022 - Present</span>
-						<h2>Logo Infosoft</h2>
-						<span class="position">DevOps Engineer</span>
-						<p class="mt-4"> 
-							<ul>
-								<li>Resolved technical issues and provided support, increasing customer satisfaction by 20 percentStrengthened infrastructure security to 95% and mitigated vulnerabilities by evaluating and optimizing WAF, Security Hub,
-									Guard Duty, CrowdStrike Falcon, Nessus (Sec-Fusion, Bizzy), and Inspector.</li>
-								<li>Implemented High Availability for WordPress website server using AWS services: Apache2, ELB, EFS, EC2, RDS, ACM etc.</li>
-								
-								<li>Provisioned and maintained Terraform templates, demonstrating expertise in Infrastructure as Code (IaC) for streamlined
-									and automated infrastructure management.									
-								</li>
+    <!-- Experience & Education Section (Restored, Modern) -->
+    <section id="experience-education-section" class="section-animate">
+      <div class="glass-card" style="max-width: 900px; margin: 3rem auto 2rem auto;">
+        <h2 class="accent" style="font-size:2.2rem; font-weight:700; margin-bottom:1.2rem;">Experience & Education</h2>
+        <div class="timeline-vertical">
+          <div class="timeline-item">
+            <div class="timeline-icon exp"><span class="icon-briefcase"></span></div>
+            <div class="timeline-content">
+              <span class="timeline-date">06/2022 - Present</span>
+              <h3>DevOps Engineer <span class="accent">@Logo Infosoft</span></h3>
+              <ul>
+                <li>Automated AWS infrastructure provisioning and deployment using Terraform and Ansible.</li>
+                <li>Implemented CI/CD pipelines for zero-downtime releases.</li>
+                <li>Strengthened infrastructure security and optimized cloud costs.</li>
 							</ul>
-
-						</p>
-
 					</div>
-
 				</div>
-
+          <div id="education-section"></div>
+          <div class="timeline-item">
+            <div class="timeline-icon edu"><span class="icon-graduation-cap"></span></div>
+            <div class="timeline-content">
+              <span class="timeline-date">2021-22</span>
+              <h3>PG-Diploma in DITISS <span class="accent">@IACSD, Pune</span></h3>
 			</div>
-
-		<br>
-		<br>
-		<br>
-		<!-- Education Section -->
-		<div class="row">
-			<h1 class="big-4">Education</h1>
-			<div class="underline"></div>
 		</div>
-		<br>
-		
-			<div class="row">
-				<div class="col-md-6">
-    				<div class="resume-wrap ftco-animate">
-    					<span class="date">2021-22</span>
-    					<h2>PG-Diploma in DITISS</h2><br>
-    					<span class="position">IACSD, Pune</span>
-    					<!-- <p class="mt-4">Percentage: 89.60% .</p> -->
+          <div class="timeline-item">
+            <div class="timeline-icon edu"><span class="icon-graduation-cap"></span></div>
+            <div class="timeline-content">
+              <span class="timeline-date">2015-18</span>
+              <h3>Bachelor of Engineering <span class="accent">@MIT, Aurangabad</span></h3>
     				</div>
-				</div>
-
-				<div class="col-md-6">
-    				<div class="resume-wrap ftco-animate">
-    					<span class="date">2015-18</span>
-    					<h2>Bachelor of Engineering</h2>
-    					<span class="position">Maharashtra Institute of Technology, Aurangabad.</span>
-    					
-						<!-- <p class="mt-4">CGPA in 3rd Year: 7.</p> -->
-    				</div>
-    			</div>
-
-    		</div>
-
-			
-    		<div class="row justify-content-center mt-5">
-    			<div class="col-md-6 text-center ftco-animate">
-    				<!-- <p><a href="images/Vishal_Nikam.pdf" class="btn btn-primary py-4 px-5">Download Resume</a></p> -->
     			</div>
     		</div>
     	</div>
     </section>
 
-   
-    <section class="ftco-section" id="project-section">
-      <div class="container">
-		<div class="row">
-			<h1 class="big-4">Projects</h1>
-			<div class="underline"></div>
-		</div>
-	 <br>
-		</div>
-	  </div>
-    </section>
-<!-- <br>
-<br>
-<br> -->
-
-	<section class="ftco-section ftco-no-pt ftco-no-pb ftco-counter img" id="section-counter">
-	
-	  <div class="ftco-section ftco-hireme img margin-top" style="background-image: url(images/bg_1.jpg)">
-			<!-- <div class="container"> -->
-				<div class="row justify-content-center">
-					<div class="col-md-7 ftco-animate text-center">
-						<h2>Projects on<span> Github  </span> </h2>
-						<br>
-						<p><a href="https://github.com/hiiamvishal" class="btn btn-primary py-3 px-5">GitHub</a></p>
-						</div>
-					</div>
-				</div>
-			<!-- </div> -->
-		</div>
-	</section>
-
-
-
-    <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
-      <div class="container">
-      	<div class="row justify-content-center mb-5 pb-3">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Contact</h1>
-            <h2 class="mb-4">Contact Me</h2>
-            <p>Below are the details to reach out to me!</p>
+    <!-- Projects Section (Main Focus) -->
+    <section id="projects-section" class="section-animate">
+      <div class="glass-card" style="max-width: 1100px; margin: 3rem auto 2rem auto;">
+        <h2 class="accent" style="font-size:2.2rem; font-weight:700; margin-bottom:1.2rem;">Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card" data-title="DevSecOps Pipeline" data-description="Built an end-to-end CI/CD pipeline with integrated static code analysis and vulnerability scanning using SonarQube. Ensured secure delivery with shift-left practices for early detection of security flaws." data-tech="GitHub Actions, SonarQube, Docker, Terraform, AWS" data-link="https://github.com/hiiamvishal/devsecops-pipeline">
+            <div class="project-title">DevSecOps Pipeline</div>
+            <div class="project-tags">GitHub Actions · SonarQube · Docker · Terraform · AWS</div>
+          </div>
+          <div class="project-card" data-title="Real-Time Threat Detection with Wazuh" data-description="Deployed and configured Wazuh for log analysis, file integrity monitoring, and intrusion detection, improving threat visibility across the infrastructure." data-tech="Wazuh, AWS EC2, ELK Stack" data-link="https://github.com/hiiamvishal/wazuh-threat-detection">
+            <div class="project-title">Real-Time Threat Detection with Wazuh</div>
+            <div class="project-tags">Wazuh · AWS EC2 · ELK Stack</div>
+          </div>
+          <div class="project-card" data-title="Penetration Testing Simulation" data-description="Simulated brute-force and injection attacks to assess the resilience of application security. Identified key vulnerabilities and implemented mitigations based on OWASP recommendations." data-tech="Kali Linux, OWASP ZAP, Burp Suite" data-link="https://github.com/hiiamvishal/penetration-testing-simulation">
+            <div class="project-title">Penetration Testing Simulation</div>
+            <div class="project-tags">Kali Linux · OWASP ZAP · Burp Suite</div>
+          </div>
+          <div class="project-card" data-title="Monitoring & Alerting" data-description="Integrated Grafana with Prometheus and Zabbix to visualize real-time system and application metrics. Created custom dashboards for EC2 health, RDS performance, and API latency. Set up alerting with Grafana + Slack & Email for real-time incident notifications." data-tech="Zabbix, ELK, Grafana, Prometheus" data-link="https://github.com/hiiamvishal/monitoring-alerting">
+            <div class="project-title">Monitoring & Alerting</div>
+            <div class="project-tags">Zabbix · ELK · Grafana · Prometheus</div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="row d-flex contact-info mb-5">
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-map-signs"></span>
-          		</div>
-          		<h3 class="mb-4">Address</h3>
-	            <p><a><b>Vashi Navi Mumbai, Maharashtra, India</b></a></p>
-	          </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-phone2"></span>
-          		</div>
-          		<h3 class="mb-4">Contact Number</h3>
-	            <p><a href="tel://0101010101"><b>+91 8390661359</b></a></p>
-	          </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-paper-plane"></span>
-          		</div>
-          		<h3 class="mb-4">Email Address</h3>
-	            <p><a href="mailto:info@yoursite.com"><b>nikamvishalbhaskar@gmail.com</b></a></p>
-	          </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-globe"></span>
-          		</div>
-          		<h3 class="mb-4">Download Resume</h3>
-	            <p><a href="images/Vishal_Nikam.pdf"><b>Resume</b></a></p>
-	          </div>
-          </div>
+    <!-- Move project modal outside of Projects section -->
+    <div id="project-modal" class="project-modal" style="display:none;">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3 id="modal-title"></h3>
+        <p id="modal-description"></p>
+        <div id="modal-tech" class="modal-tech"></div>
+        <a id="modal-link" href="#" target="_blank" class="btn-accent" style="margin-top:1rem;display:inline-block;">View on GitHub</a>
+      </div>
+    </div>
 
-		  <div class="container">
-			<br>
-			<br>
-				<br>
-					<ul class="ftco-footer-social list-unstyled d-flex justify-content-center align-items-center mb-0">
-					  <li class="ftco-animate normal-txt">Find me on  </li>
-					  <li class="ftco-animate"><a href="https://www.linkedin.com/in/vishal-nikam-/"><span class="icon-linkedin"></span></a></li>
-					  <li class="ftco-animate"><a href="https://github.com/hiiamvishal"><span class="icon-github"></span></a></li>  
-					  <li class="ftco-animate"><a href="https://www.instagram.com/vishal_b_nikam/"><span class="icon-instagram"></span></a></li>
-					</ul>
-				<br>
+    <!-- Contact Section (Restored, Glassmorphic) -->
+    <section id="contact-section" class="section-animate">
+      <div class="glass-card" style="max-width: 600px; margin: 3rem auto 2rem auto;">
+        <h2 class="accent" style="font-size:2.2rem; font-weight:700; margin-bottom:1.2rem;">Contact Me</h2>
+        <form id="contact-form" autocomplete="off" style="display:flex;flex-direction:column;gap:1.2rem;">
+          <input type="text" name="name" placeholder="Your Name" required class="contact-input" />
+          <input type="email" name="email" placeholder="Your Email" required class="contact-input" />
+          <textarea name="message" placeholder="Your Message" rows="4" required class="contact-input"></textarea>
+          <button type="submit" class="btn-accent" style="margin-top:0.5rem;">Send Message</button>
+        </form>
+        <div id="contact-success" style="display:none;color:var(--accent);margin-top:1.2rem;font-weight:600;">Thank you! Your message has been sent.</div>
+        <div style="margin-top:2.2rem;text-align:center;">
+          <a href="mailto:nikamvishalbhaskar@gmail.com" class="accent" style="font-size:1.1rem;">nikamvishalbhaskar@gmail.com</a>
+          </div>
+        <div style="margin-top:1.2rem;text-align:center;">
+          <a href="tel:+918390661359" class="accent" style="font-size:1.1rem;display:inline-block;margin-bottom:0.7rem;"><span class="icon-phone2" style="margin-right:7px;"></span>+91 8390661359</a>
+          <div style="margin-top:0.7rem;display:flex;justify-content:center;gap:1.5rem;">
+            <a href="https://www.linkedin.com/in/vishal-nikam-/" target="_blank" class="accent" style="font-size:1.6rem;"><span class="icon-linkedin"></span></a>
+            <a href="https://github.com/hiiamvishal" target="_blank" class="accent" style="font-size:1.6rem;"><span class="icon-github"></span></a>
+            <a href="https://www.instagram.com/vishal_b_nikam/" target="_blank" class="accent" style="font-size:1.6rem;"><span class="icon-instagram"></span></a>
+        </div>
 		   </div>
    </div>
  </section>
-
-
- 
 	
     <footer class="ftco-footer ftco-section">
 		<div class="container">
 		  <div class="row">
 			<div class="col-md-12 text-center">
-  
 			  <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 	Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved  by <a href="https://www.linkedin.com/in/vishal-nikam-/" target="_blank">Vishal Nikam</a>
 	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
@@ -503,10 +1204,8 @@
 		</div>
 	  </footer>
 
-
   <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
@@ -522,6 +1221,349 @@
   <script src="js/scrollax.min.js"></script>
   
   <script src="js/main.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+    <script>
+    VanillaTilt.init(document.querySelectorAll('[data-tilt]'), {
+      max: 20,
+      speed: 400,
+      glare: true,
+      'max-glare': 0.18
+    });
+    </script>
+    <!-- Add skill bar and fun fact animation scripts before closing body tag -->
+    <script>
+    // Animate skill bars and percentage counters
+    function animateSkills() {
+      document.querySelectorAll('.skill-mf .progress-bar').forEach(function(bar, i) {
+        const percent = parseInt(bar.getAttribute('aria-valuenow'));
+        bar.style.transition = 'width 1.5s cubic-bezier(.77,0,.18,1)';
+        setTimeout(() => { bar.style.width = percent + '%'; }, 300 + i * 150);
+      });
+      document.querySelectorAll('.skill-mf .skill-percent').forEach(function(span, i) {
+        const percent = parseInt(span.getAttribute('data-percent'));
+        let current = 0;
+        const interval = setInterval(() => {
+          if (current < percent) {
+            current++;
+            span.textContent = current + '%';
+          } else {
+            clearInterval(interval);
+          }
+        }, 1500 / percent);
+      });
+    }
+    // Animate fun facts counters
+    function animateFunFacts() {
+      document.querySelectorAll('.fact-number').forEach(function(el) {
+        const target = parseInt(el.getAttribute('data-count'));
+        let current = 0;
+        const step = Math.max(1, Math.floor(target / 60));
+        const interval = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            el.textContent = target;
+            clearInterval(interval);
+          } else {
+            el.textContent = current;
+          }
+        }, 20);
+      });
+    }
+    // Trigger animations on scroll into view
+    function isInViewport(el) {
+      const rect = el.getBoundingClientRect();
+      return (
+        rect.top < window.innerHeight && rect.bottom > 0
+      );
+    }
+    window.addEventListener('scroll', function() {
+      const skills = document.querySelector('.skill-mf');
+      if (skills && isInViewport(skills) && !skills.classList.contains('animated')) {
+        skills.classList.add('animated');
+        animateSkills();
+      }
+      const facts = document.querySelector('.fun-facts');
+      if (facts && isInViewport(facts) && !facts.classList.contains('animated')) {
+        facts.classList.add('animated');
+        animateFunFacts();
+      }
+    });
+    // Initial check in case already in view
+    setTimeout(() => {
+      const skills = document.querySelector('.skill-mf');
+      if (skills && isInViewport(skills) && !skills.classList.contains('animated')) {
+        skills.classList.add('animated');
+        animateSkills();
+      }
+      const facts = document.querySelector('.fun-facts');
+      if (facts && isInViewport(facts) && !facts.classList.contains('animated')) {
+        facts.classList.add('animated');
+        animateFunFacts();
+      }
+    }, 500);
+    </script>
+    <!-- Animate timeline items on scroll using AOS or fallback -->
+    <script>
+    function animateTimeline() {
+      document.querySelectorAll('.timeline-item').forEach(function(item) {
+        if (isInViewport(item)) {
+          item.classList.add('aos-animate');
+        }
+      });
+    }
+    window.addEventListener('scroll', animateTimeline);
+    setTimeout(animateTimeline, 500);
+    </script>
+    <!-- Add particles.js and Vanilla Tilt.js -->
+    <script>
+    // Remove old particlesJS code
+    if (window.VANTA) window.VANTA.NET && window.VANTA.NET({
+      el: "#vanta-bg",
+      mouseControls: true,
+      touchControls: true,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0xff0057,
+      shininess: 50.00,
+      waveHeight: 18.00,
+      waveSpeed: 0.65,
+      zoom: 0.85,
+      backgroundColor: 0x181c24
+    });
+    </script>
+    <!-- Animated circular skill progress -->
+    <script>
+    function createSkillCircles() {
+      document.querySelectorAll('.skill-circle').forEach(function(el) {
+        const percent = parseInt(el.getAttribute('data-percent'));
+        const skill = el.getAttribute('data-skill');
+        el.innerHTML = `<svg width="90" height="90"><circle cx="45" cy="45" r="38" stroke="#222" stroke-width="8" fill="none"/><circle class="circle-bar" cx="45" cy="45" r="38" stroke="var(--accent)" stroke-width="8" fill="none" stroke-dasharray="238" stroke-dashoffset="238"/></svg><div class="skill-percent">0%</div><div class="skill-label">${skill}</div>`;
+        // Animate the circle
+        setTimeout(() => {
+          const circle = el.querySelector('.circle-bar');
+          const percentEl = el.querySelector('.skill-percent');
+          let current = 0;
+          const targetOffset = 238 - (238 * percent / 100);
+          const interval = setInterval(() => {
+            if (current < percent) {
+              current++;
+              percentEl.textContent = current + '%';
+              circle.setAttribute('stroke-dashoffset', 238 - (238 * current / 100));
+            } else {
+              clearInterval(interval);
+            }
+          }, 1200 / percent);
+        }, 400);
+      });
+    }
+    // Animate fun fact counters
+    function animateFunFacts() {
+      document.querySelectorAll('.fact-number').forEach(function(el) {
+        const target = parseInt(el.getAttribute('data-count'));
+        let current = 0;
+        const step = Math.max(1, Math.floor(target / 60));
+        const interval = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            el.textContent = target;
+            clearInterval(interval);
+          } else {
+            el.textContent = current;
+          }
+        }, 20);
+      });
+    }
+    // Trigger animations on scroll into view
+    function isInViewport(el) {
+      const rect = el.getBoundingClientRect();
+      return (
+        rect.top < window.innerHeight && rect.bottom > 0
+      );
+    }
+    window.addEventListener('scroll', function() {
+      const skills = document.querySelector('#about-section');
+      if (skills && isInViewport(skills) && !skills.classList.contains('animated')) {
+        skills.classList.add('animated');
+        createSkillCircles();
+        animateFunFacts();
+      }
+    });
+    // Initial check in case already in view
+    setTimeout(() => {
+      const skills = document.querySelector('#about-section');
+      if (skills && isInViewport(skills) && !skills.classList.contains('animated')) {
+        skills.classList.add('animated');
+        createSkillCircles();
+        animateFunFacts();
+      }
+    }, 500);
+    </script>
+    <!-- Project modal logic -->
+    <script>
+    // Project modal logic
+    const modal = document.getElementById('project-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDesc = document.getElementById('modal-description');
+    const modalTech = document.getElementById('modal-tech');
+    const modalLink = document.getElementById('modal-link');
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('click', () => {
+        modalTitle.textContent = card.getAttribute('data-title');
+        modalDesc.textContent = card.getAttribute('data-description');
+        modalTech.textContent = card.getAttribute('data-tech');
+        modalLink.href = card.getAttribute('data-link');
+        modal.style.display = 'flex';
+      });
+    });
+    document.querySelector('.close-modal').onclick = function() {
+      modal.style.display = 'none';
+    };
+    window.onclick = function(event) {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    };
+    </script>
+    <!-- Contact form animation and fake submit -->
+    <script>
+    const contactForm = document.getElementById('contact-form');
+    const contactSuccess = document.getElementById('contact-success');
+    if (contactForm) {
+      contactForm.onsubmit = function(e) {
+        e.preventDefault();
+        contactForm.style.opacity = 0.5;
+        setTimeout(() => {
+          contactForm.style.display = 'none';
+          contactSuccess.style.display = 'block';
+        }, 900);
+      };
+    }
+    </script>
+    <!-- Navbar active link sync on scroll -->
+    <script>
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = ['#hero-section', '#about-section', '#experience-education-section', '#projects-section', '#contact-section'];
+    window.addEventListener('scroll', () => {
+      let current = '';
+      for (const id of sections) {
+        const section = document.querySelector(id);
+        if (section && window.scrollY + 80 >= section.offsetTop) {
+          current = id;
+        }
+      }
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === current) link.classList.add('active');
+      });
+    });
+    </script>
+    <!-- Section entrance animations on scroll -->
+    <script>
+    function animateSections() {
+      document.querySelectorAll('.section-animate').forEach(function(section) {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) {
+          section.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', animateSections);
+    window.addEventListener('DOMContentLoaded', animateSections);
+    // Smooth scroll for nav links (override default for offset)
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            const y = target.getBoundingClientRect().top + window.scrollY - 70;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }
+        }
+      });
+    });
+    </script>
+    <!-- Typing animation for hero streams -->
+    <script>
+    // Typing animation for hero streams
+    const typingPhrases = [
+      'DevOps Engineer',
+      'Cloud Enthusiast',
+      'Problem Solver'
+    ];
+    const typingStream = document.getElementById('typing-stream');
+    let phraseIdx = 0, charIdx = 0, isDeleting = false;
+    function typeStream() {
+      const phrase = typingPhrases[phraseIdx];
+      if (!isDeleting) {
+        typingStream.textContent = phrase.substring(0, charIdx + 1);
+        charIdx++;
+        if (charIdx === phrase.length) {
+          setTimeout(() => { isDeleting = true; typeStream(); }, 1200);
+          return;
+        }
+      } else {
+        typingStream.textContent = phrase.substring(0, charIdx - 1);
+        charIdx--;
+        if (charIdx === 0) {
+          isDeleting = false;
+          phraseIdx = (phraseIdx + 1) % typingPhrases.length;
+        }
+      }
+      setTimeout(typeStream, isDeleting ? 50 : 110);
+    }
+    if (typingStream) typeStream();
+    </script>
+    <!-- Animate skill bars on scroll -->
+    <script>
+    function animateSkillBars() {
+      document.querySelectorAll('.skills-bar-list .skill-bar-fill').forEach(function(bar) {
+        const percent = parseInt(bar.getAttribute('data-percent'));
+        setTimeout(() => { bar.style.width = percent + '%'; }, 300);
+      });
+    }
+    window.addEventListener('scroll', function() {
+      const skills = document.querySelector('#about-section');
+      if (skills && isInViewport(skills) && !skills.classList.contains('bars-animated')) {
+        skills.classList.add('bars-animated');
+        animateSkillBars();
+      }
+    });
+    setTimeout(() => {
+      const skills = document.querySelector('#about-section');
+      if (skills && isInViewport(skills) && !skills.classList.contains('bars-animated')) {
+        skills.classList.add('bars-animated');
+        animateSkillBars();
+      }
+    }, 500);
+    </script>
+    <!-- tsParticles gradient particle effect -->
+    <script>
+    if (window.tsParticles) {
+      tsParticles.load("tsparticles-bg", {
+        fullScreen: { enable: false },
+        background: { color: "transparent" },
+        particles: {
+          number: { value: 60, density: { enable: true, value_area: 800 } },
+          color: { value: ["#2563eb", "#60a5fa", "#1e40af"] },
+          shape: { type: "circle" },
+          opacity: { value: 0.18, random: true },
+          size: { value: 6, random: true },
+          move: { enable: true, speed: 1.2, direction: "none", random: false, straight: false, outModes: { default: "out" } },
+          links: {
+            enable: true,
+            color: { value: ["#2563eb", "#60a5fa", "#1e40af"] },
+            opacity: 0.12,
+            width: 1.2,
+            distance: 120
+          }
+        },
+        detectRetina: true
+      });
+    }
+    </script>
   </body>
 </html>
